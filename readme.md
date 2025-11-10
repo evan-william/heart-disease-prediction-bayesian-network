@@ -1,4 +1,4 @@
-# 🫀 Heart Disease Risk Prediction System
+# 🫀 Heart Disease Risk Prediction System V 1.0
 
 <div align="center">
 
@@ -281,27 +281,12 @@ Kami menerima kontribusi! Jika Anda ingin berkontribusi:
 
 ---
 
-## 📄 Lisensi
-
-Proyek ini dilisensikan di bawah **MIT License** - lihat file [LICENSE](LICENSE) untuk detail.
-
----
-
 ## 🙏 Acknowledgments
 
 - **Dataset**: [Kaggle - Heart Failure Prediction](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction)
 - **Inspirasi Penelitian**: Wang et al. (2023) - Nature Scientific Reports
 - **Framework**: Flask, pgmpy, scikit-learn, imbalanced-learn
 - **Dosen Pembimbing**: [Nama Dosen] - Mata Kuliah Machine Learning
-
----
-
-## 📞 Kontak
-
-Untuk pertanyaan atau saran, silakan hubungi tim kami:
-
-📧 Email: [team@heartdisease-ml.com](mailto:team@heartdisease-ml.com)  
-🐙 GitHub Issues: [Report Bug](https://github.com/[USERNAME]/heart-disease-prediction/issues)
 
 ---
 
@@ -314,20 +299,6 @@ Untuk pertanyaan atau saran, silakan hubungi tim kami:
 **⭐ Jangan lupa beri bintang jika proyek ini bermanfaat! ⭐**
 
 </div>
-
----
-
-## 📈 Roadmap
-
-- [x] Implementasi Bayesian Network
-- [x] Penanganan data imbalanced dengan SMOTE-Tomek
-- [x] Web interface dengan Flask
-- [x] Explainable AI features
-- [ ] Deploy ke cloud (Heroku/Railway)
-- [ ] API REST untuk integrasi eksternal
-- [ ] Mobile app (Flutter)
-- [ ] Dashboard analytics untuk dokter
-- [ ] Multi-bahasa support (EN/ID)
 
 ---
 
