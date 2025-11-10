@@ -1,4 +1,4 @@
-# ♡ Heart Disease Risk Prediction System v1 (Last Updated: 10/11/2025)
+# ♡ Heart Disease Risk Prediction System v1 (10/11/2025)
 
 
 <div align="center">
