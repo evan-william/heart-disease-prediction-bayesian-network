@@ -115,92 +115,29 @@ Interface web yang bersih dan intuitif menggunakan **Flask** + **Tailwind CSS**.
 
 ### 📦 Prasyarat
 
-- Python 3.8 atau lebih tinggi
-- Git
-- pip (Python package manager)
+- Python 3.8+
+- pip
 
-### 🔧 Setup Langkah demi Langkah
-
-#### 1️⃣ Clone Repository
+### ⚡ Quick Start
 
 ```bash
+# Clone & Navigate
 git clone https://github.com/[USERNAME]/heart-disease-prediction.git
 cd heart-disease-prediction
-```
 
-#### 2️⃣ Buat Virtual Environment (Opsional tapi Direkomendasikan)
-
-```bash
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-
-# macOS/Linux
-source venv/bin/activate
-```
-
-#### 3️⃣ Install Dependencies
-
-```bash
+# Install Dependencies
 pip install -r requirements.txt
-```
 
-**File `requirements.txt`:**
-```txt
-Flask==2.3.0
-pandas==2.0.0
-scikit-learn==1.3.0
-pgmpy==0.1.23
-imbalanced-learn==0.11.0
-joblib==1.3.0
-numpy==1.24.0
-```
+# Download dataset dari Kaggle ke folder data/heart.csv
 
-#### 4️⃣ Download Dataset
-
-1. Unduh dataset dari Kaggle: [Heart Failure Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction)
-2. Buat folder `data/` di root project
-3. Letakkan file CSV dan rename menjadi `heart.csv`
-
-**Struktur Folder:**
-```
-heart-disease-prediction/
-├── data/
-│   └── heart.csv          # Dataset dari Kaggle
-├── static/
-│   └── style.css
-├── templates/
-│   ├── index.html
-│   └── result.html
-├── app.py                 # Flask application
-├── train.py               # Training script
-├── model.joblib           # Model terlatih (akan dibuat)
-├── requirements.txt
-└── README.md
-```
-
-#### 5️⃣ Train Model
-
-Jalankan script training untuk memproses data, menerapkan SMOTE-Tomek, dan melatih Bayesian Network:
-
-```bash
+# Train Model
 python train.py
-```
 
-**Output:**
-- `model.joblib` - Model Bayesian Network yang sudah dilatih
-- Metrik evaluasi akan ditampilkan di console
-
-#### 6️⃣ Jalankan Aplikasi
-
-```bash
-flask run
-# atau
+# Run App
 python app.py
 ```
 
-Buka browser dan akses: **http://127.0.0.1:5000**
+Buka **http://127.0.0.1:5000** di browser Anda.
 
 ---
 
@@ -208,19 +145,11 @@ Buka browser dan akses: **http://127.0.0.1:5000**
 
 <div align="center">
 
-### 🏠 Halaman Input
+<img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="500" alt="Coming Soon"/>
 
-<img src="https://media.giphy.com/media/l0HlTy9x8FZo0XO1i/giphy.gif" width="600" alt="Input Form Demo"/>
+### 🎬 Screenshots Coming Soon!
 
-*Form input data pasien dengan validasi real-time*
-
----
-
-### 📊 Halaman Hasil Prediksi
-
-<img src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif" width="600" alt="Prediction Result Demo"/>
-
-*Hasil prediksi dengan probabilitas dan faktor risiko*
+*Demo lengkap akan ditambahkan sebelum hari H UAS*
 
 </div>
 
@@ -228,30 +157,33 @@ Buka browser dan akses: **http://127.0.0.1:5000**
 
 ## 🧪 Cara Kerja Model
 
-### 1. Data Preprocessing
+<div align="center">
 
-```python
-# Handling imbalanced data
-smote_tomek = SMOTETomek(random_state=42)
-X_resampled, y_resampled = smote_tomek.fit_resample(X, y)
+```mermaid
+graph LR
+    A[📊 Dataset] -->|SMOTE-Tomek| B[⚖️ Balanced Data]
+    B -->|Training| C[🧠 Bayesian Network]
+    C -->|Inference| D[📈 Probability + Explanation]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#9f9,stroke:#333,stroke-width:2px
 ```
 
-### 2. Bayesian Network Structure
+### Model Architecture
 
 ```mermaid
 graph TD
-    Age[Usia] --> Risk[Risiko]
+    Age[Usia] --> Risk[Risiko Penyakit Jantung]
     Cholesterol[Kolesterol] --> Risk
     BP[Tekanan Darah] --> Risk
     Sugar[Gula Darah] --> Risk
-    ECG[ECG] --> Risk
     MaxHR[Max Heart Rate] --> Risk
     ChestPain[Nyeri Dada] --> Risk
+    
+    style Risk fill:#ff6b6b,stroke:#333,stroke-width:3px
 ```
 
-### 3. Inference & Explanation
-
-Model menghitung probabilitas posterior dan mengidentifikasi faktor-faktor dengan kontribusi tertinggi menggunakan **Maximum Aposteriori Probability (MAP)**.
+</div>
 
 ---
 
@@ -278,18 +210,27 @@ Model menghitung probabilitas posterior dan mengidentifikasi faktor-faktor denga
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Evan&background=0D8ABC&color=fff&size=128" width="100px;" alt="Evan"/><br />
 <sub><b>Evan</b></sub><br />
+<sub>Machine Learning</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Benaya&background=6366F1&color=fff&size=128" width="100px;" alt="Benaya"/><br />
 <sub><b>Benaya</b></sub><br />
+<sub>Backend Developer</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Reymond&background=8B5CF6&color=fff&size=128" width="100px;" alt="Reymond"/><br />
 <sub><b>Reymond</b></sub><br />
+<sub>Data Preprocessing</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Berliana&background=EC4899&color=fff&size=128" width="100px;" alt="Berliana"/><br />
 <sub><b>Berliana</b></sub><br />
+<sub>Frontend Developer</sub>
+</td>
+<td align="center" width="20%">
+<img src="https://ui-avatars.com/api/?name=Kasi&background=F59E0B&color=fff&size=128" width="100px;" alt="Kasi"/><br />
+<sub><b>Kasi</b></sub><br />
+<sub>Model Evaluation</sub>
 </td>
 </tr>
 </table>
@@ -340,12 +281,27 @@ Kami menerima kontribusi! Jika Anda ingin berkontribusi:
 
 ---
 
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah **MIT License** - lihat file [LICENSE](LICENSE) untuk detail.
+
+---
+
 ## 🙏 Acknowledgments
 
 - **Dataset**: [Kaggle - Heart Failure Prediction](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction)
 - **Inspirasi Penelitian**: Wang et al. (2023) - Nature Scientific Reports
 - **Framework**: Flask, pgmpy, scikit-learn, imbalanced-learn
 - **Dosen Pembimbing**: [Nama Dosen] - Mata Kuliah Machine Learning
+
+---
+
+## 📞 Kontak
+
+Untuk pertanyaan atau saran, silakan hubungi tim kami:
+
+📧 Email: [team@heartdisease-ml.com](mailto:team@heartdisease-ml.com)  
+🐙 GitHub Issues: [Report Bug](https://github.com/[USERNAME]/heart-disease-prediction/issues)
 
 ---
 
