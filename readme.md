@@ -187,7 +187,7 @@ graph TD
 
 ---
 
-## 📊 Evaluasi Model (TO BE UPDATED)
+## 📊 Contoh Hasil Evaluasi Model (TO BE UPDATED)
 
 | Metrik | Nilai |
 |--------|-------|
