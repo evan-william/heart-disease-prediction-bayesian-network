@@ -210,38 +210,33 @@ graph TD
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Evan&background=0D8ABC&color=fff&size=128" width="100px;" alt="Evan"/><br />
 <sub><b>Evan</b></sub><br />
-<sub>Machine Learning</sub>
+<sub>5803024001</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Benaya&background=6366F1&color=fff&size=128" width="100px;" alt="Benaya"/><br />
 <sub><b>Benaya</b></sub><br />
-<sub>Backend Developer</sub>
+<sub>5803024008</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Reymond&background=8B5CF6&color=fff&size=128" width="100px;" alt="Reymond"/><br />
 <sub><b>Reymond</b></sub><br />
-<sub>Data Preprocessing</sub>
+<sub>5803024017</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Berliana&background=EC4899&color=fff&size=128" width="100px;" alt="Berliana"/><br />
 <sub><b>Berliana</b></sub><br />
-<sub>Frontend Developer</sub>
-</td>
-<td align="center" width="20%">
-<img src="https://ui-avatars.com/api/?name=Kasi&background=F59E0B&color=fff&size=128" width="100px;" alt="Kasi"/><br />
-<sub><b>Kasi</b></sub><br />
-<sub>Model Evaluation</sub>
+<sub>5803024015</sub>
 </td>
 </tr>
 </table>
 
-**Proyek UAS - Machine Learning 2024/2025**
+**Proyek UAS - AI 2025**
 
 </div>
 
 ---
 
-## 📚 Struktur File
+## 📚 Struktur File (TO BE UPDATED)
 
 ```
 heart-disease-prediction/
