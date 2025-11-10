@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Risiko Penyakit Jantung</title>
+    <!-- Muat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Efek 'glow' untuk hasil */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+        }
+        .glow-effect {
+            animation: glow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-900 via-gray-900 to-black text-gray-200 font-sans min-h-screen p-8">
+
+    <div class="container mx-auto max-w-6xl">
+        
+        <!-- HEADER -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-2">
+                Prediksi Risiko Penyakit Jantung
+            </h1>
+            <p class="text-lg text-gray-400">
+                Menggunakan Bayesian Network & SMOTE-Tomek
+            </p>
+        </header>
+
+        <!-- KONTEN UTAMA: FORM & HASIL -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- KOLOM 1: FORM INPUT -->
+            <div class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700">
+                <h2 class="text-2xl font-semibold mb-6 text-cyan-400">Masukkan Data Pasien</h2>
+                
+                <form action="/predict" method="POST">
+                    
+                    <!-- Grup: Data Diri -->
+                    <fieldset class="mb-6">
+                        <legend class="text-lg font-medium text-gray-300 mb-3">Data Diri</legend>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="Age" class="block text-sm font-medium text-gray-400 mb-1">Usia (Tahun)</label>
+                                <input type="number" name="Age" id="Age" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Contoh: 55">
+                            </div>
+                            <div>
+                                <label for="Sex" class="block text-sm font-medium text-gray-400 mb-1">Jenis Kelamin</label>
+                                <select name="Sex" id="Sex" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="M">Laki-laki (M)</option>
+                                    <option value="F">Perempuan (F)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Grup: Data Medis 1 -->
+                    <fieldset class="mb-6">
+                        <legend class="text-lg font-medium text-gray-300 mb-3">Data Medis (Vital)</legend>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="RestingBP" class="block text-sm font-medium text-gray-400 mb-1">Tekanan Darah Istirahat (mmHg)</label>
+                                <input type="number" name="RestingBP" id="RestingBP" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Contoh: 120">
+                            </div>
+                            <div>
+                                <label for="Cholesterol" class="block text-sm font-medium text-gray-400 mb-1">Kolesterol (mg/dl)</label>
+                                <input type="number" name="Cholesterol" id="Cholesterol" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Contoh: 200">
+                            </div>
+                            <div>
+                                <label for="MaxHR" class="block text-sm font-medium text-gray-400 mb-1">Detak Jantung Maks (per menit)</label>
+                                <input type="number" name="MaxHR" id="MaxHR" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Contoh: 150">
+                            </div>
+                            <div>
+                                <label for="FastingBS" class="block text-sm font-medium text-gray-400 mb-1">Gula Darah Puasa > 120 mg/dl?</label>
+                                <select name="FastingBS" id="FastingBS" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="0">Tidak (<= 120)</option>
+                                    <option value="1">Ya (> 120)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Grup: Data Medis 2 (EKG & Olahraga) -->
+                    <fieldset class="mb-6">
+                        <legend class="text-lg font-medium text-gray-300 mb-3">Data EKG & Olahraga</legend>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="ChestPainType" class="block text-sm font-medium text-gray-400 mb-1">Tipe Nyeri Dada</label>
+                                <select name="ChestPainType" id="ChestPainType" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="TA">Typical Angina (TA)</option>
+                                    <option value="ATA">Atypical Angina (ATA)</option>
+                                    <option value="NAP">Non-Anginal Pain (NAP)</option>
+                                    <option value="ASY">Asymptomatic (ASY)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="RestingECG" class="block text-sm font-medium text-gray-400 mb-1">EKG Istirahat</label>
+                                <select name="RestingECG" id="RestingECG" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="Normal">Normal</option>
+                                    <option value="ST">ST-T Wave Abnormality (ST)</option>
+                                    <option value="LVH">Left Ventricular Hypertrophy (LVH)</option>
+                                </select>
+                            </div>
+                             <div>
+                                <label for="ExerciseAngina" class="block text-sm font-medium text-gray-400 mb-1">Angina Saat Olahraga?</label>
+                                <select name="ExerciseAngina" id="ExerciseAngina" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="N">Tidak (N)</option>
+                                    <option value="Y">Ya (Y)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="ST_Slope" class="block text-sm font-medium text-gray-400 mb-1">ST Slope</label>
+                                <select name="ST_Slope" id="ST_Slope" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="Up">Upsloping (Up)</option>
+                                    <option value="Flat">Flat</option>
+                                    <option value="Down">Downsloping (Down)</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="Oldpeak" class="block text-sm font-medium text-gray-400 mb-1">Oldpeak (Depresi ST)</label>
+                                <input type="number" step="0.1" name="Oldpeak" id="Oldpeak" required class="w-full bg-gray-800 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Contoh: 1.2">
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- TOMBOL SUBMIT -->
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-cyan-400 text-black font-bold text-lg py-4 px-6 rounded-lg shadow-lg hover:from-blue-600 hover:to-cyan-500 transition duration-300 transform hover:scale-105">
+                        Prediksi Risiko
+                    </button>
+                </form>
+            </div>
+
+            <!-- KOLOM 2: HASIL PREDIKSI -->
+            <div id="result" class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700 flex flex-col justify-center items-center">
+                
+                {% if risk is defined %}
+                    <!-- TAMPILAN HASIL -->
+                    <div class="text-center glow-effect border-2 border-blue-500 rounded-full w-64 h-64 flex flex-col justify-center items-center p-4">
+                        <span class="text-lg text-gray-400">Prediksi Risiko</span>
+                        <span class="text-7xl font-bold {{ risk_color }} my-2">{{ "%.0f"|format(risk) }}<span class="text-5xl">%</span></span>
+                        
+                        {% if risk > 70 %}
+                            <span class="text-xl font-medium text-red-400">Risiko Sangat Tinggi</span>
+                        {% elif risk > 40 %}
+                            <span class="text-xl font-medium text-yellow-400">Risiko Menengah</span>
+                        {% else %}
+                            <span class="text-xl font-medium text-green-400">Risiko Rendah</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="mt-8 w-full">
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-4">Faktor Risiko Utama (Alasan):</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            {% for reason in reasons %}
+                                <li>{{ reason }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                
+                {% elif error %}
+                    <!-- TAMPILAN ERROR -->
+                    <div class="text-center">
+                        <span class="text-5xl">😞</span>
+                        <h2 class="text-2xl font-semibold text-red-500 mt-4">Terjadi Kesalahan</h2>
+                        <p class="text-gray-400 mt-2">{{ error }}</p>
+                    </div>
+                
+                {% else %}
+                    <!-- TAMPILAN AWAL -->
+                    <div class="text-center text-gray-500">
+                        <svg class="mx-auto h-24 w-24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-3v3m3-3v3M1.5 9h15a.75.75 0 010 1.5h-15a.75.75 0 010-1.5z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 9.75v6.75c0 1.24-1.01 2.25-2.25 2.25h-10.5c-1.24 0-2.25-1.01-2.25-2.25V9.75c0-1.24 1.01-2.25 2.25-2.25h10.5c1.24 0 2.25 1.01 2.25 2.25zM16.5 6.75v-1.5a1.5 1.5 0 00-3 0v1.5m3 0a1.5 1.5 0 01-3 0v-1.5a1.5 1.5 0 013 0v1.5z" />
+                        </svg>
+                        <h2 class="text-2xl font-semibold mt-4">Menunggu Input</h2>
+                        <p class="mt-2">Hasil prediksi dan "alasan" (berdasarkan Bayesian Network) akan muncul di sini.</p>
+                    </div>
+                {% endif %}
+                
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script untuk auto-scroll ke hasil -->
+    {% if scroll_to %}
+    <script>
+        document.getElementById('{{ scroll_to }}').scrollIntoView({ behavior: 'smooth' });
+    </script>
+    {% endif %}
+
+</body>
+</html>
