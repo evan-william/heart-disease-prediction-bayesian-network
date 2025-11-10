@@ -278,27 +278,18 @@ Model menghitung probabilitas posterior dan mengidentifikasi faktor-faktor denga
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Evan&background=0D8ABC&color=fff&size=128" width="100px;" alt="Evan"/><br />
 <sub><b>Evan</b></sub><br />
-<sub>Machine Learning</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Benaya&background=6366F1&color=fff&size=128" width="100px;" alt="Benaya"/><br />
 <sub><b>Benaya</b></sub><br />
-<sub>Backend Developer</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Reymond&background=8B5CF6&color=fff&size=128" width="100px;" alt="Reymond"/><br />
 <sub><b>Reymond</b></sub><br />
-<sub>Data Preprocessing</sub>
 </td>
 <td align="center" width="20%">
 <img src="https://ui-avatars.com/api/?name=Berliana&background=EC4899&color=fff&size=128" width="100px;" alt="Berliana"/><br />
 <sub><b>Berliana</b></sub><br />
-<sub>Frontend Developer</sub>
-</td>
-<td align="center" width="20%">
-<img src="https://ui-avatars.com/api/?name=Kasi&background=F59E0B&color=fff&size=128" width="100px;" alt="Kasi"/><br />
-<sub><b>Kasi</b></sub><br />
-<sub>Model Evaluation</sub>
 </td>
 </tr>
 </table>
