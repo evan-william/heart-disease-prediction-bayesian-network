@@ -1,4 +1,4 @@
-# 🫀 Heart Disease Risk Prediction System V 1.0
+# ♡ Heart Disease Risk Prediction System V 1.0
 
 <div align="center">
 
@@ -266,18 +266,6 @@ heart-disease-prediction/
 ├── 📄 README.md                  # Documentation (you are here!)
 └── 📄 LICENSE                    # MIT License
 ```
-
----
-
-## 🤝 Kontribusi
-
-Kami menerima kontribusi! Jika Anda ingin berkontribusi:
-
-1. Fork repository ini
-2. Buat branch baru (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan Anda (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buat Pull Request
 
 ---
 
